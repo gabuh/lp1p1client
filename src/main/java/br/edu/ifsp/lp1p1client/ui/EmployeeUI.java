@@ -1,4 +1,5 @@
 package br.edu.ifsp.lp1p1client.ui;
+<<<<<<< HEAD
 
 import lombok.Getter;
 import lombok.Setter;
@@ -43,4 +44,7 @@ public class EmployeeUI {
 
 
 
+=======
+public class EmployeeUI {
+>>>>>>> 5e0d39ea4f6620a223a1173a6a936de2d3b1fcbe
 }

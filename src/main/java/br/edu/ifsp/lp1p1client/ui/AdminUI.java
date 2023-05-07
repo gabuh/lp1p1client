@@ -1,5 +1,6 @@
 package br.edu.ifsp.lp1p1client.ui;
 
+<<<<<<< HEAD
 import java.util.Scanner;
 
 public class AdminUI {
@@ -36,4 +37,8 @@ public class AdminUI {
 
         }while(option != 0);
     }
+=======
+public class AdminUI {
+
+>>>>>>> 5e0d39ea4f6620a223a1173a6a936de2d3b1fcbe
 }
