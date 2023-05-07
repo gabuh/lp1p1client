@@ -9,16 +9,18 @@ import java.util.Scanner;
 @Setter
 public class GuestUI {
 
-    private static short option = -1;
     private static Scanner input = new Scanner(System.in);
 
     public static void show(){
+        short option = -1;
         do {
+            String inputStr;
             System.out.println("[Guest]");
             System.out.println("1. Login");
             System.out.println("2. Register Customer");
             System.out.println("0. Quit");
-            option = Short.parseShort(input.nextLine().replaceAll("\\D+",""));
+            inputStr = input.nextLine().replaceAll("\\D+","");
+            option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
             switch (option) {
                 case 1 -> {
                     System.out.println("opt1");
