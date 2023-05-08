@@ -31,6 +31,7 @@ public class AdminUI {
             System.out.println("6. Return a book");
             System.out.println("7. Cancel a reservation");
             System.out.println("8. List all loans and reservations");
+            System.out.println("9. List loans and reservations by client id");
             System.out.println("0. Quit");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -113,6 +114,15 @@ public class AdminUI {
                     for(LoanResponseDTO l : loans){
                         LoanUtil.formatToString(l);
                     }
+                }
+                case 9 -> {
+                    System.out.println("Type the id of the client");
+                    Long clientId = input.nextLong();
+                    List<LoanResponseDTO> loans = LoanRequest.findAllByClientId(token, clientId);
+                    for(LoanResponseDTO l : loans){
+                        LoanUtil.formatToString(l);
+                    }
+                    input.nextLine();
                 }
                 case 0 -> {
                     System.out.println("Quiting");

@@ -64,4 +64,17 @@ public class LoanRequest {
                 LoanResponseDTO[].class).getBody()));
     }
 
+    public static List<LoanResponseDTO> findAllByClientId(String token, Long clientId){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", token);
+
+        return List.of(Objects.requireNonNull(new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/loans/find?clientId={clientId}",
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                LoanResponseDTO[].class,
+                clientId).getBody()));
+    }
+
 }
