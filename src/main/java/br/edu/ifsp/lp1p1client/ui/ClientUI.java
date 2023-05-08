@@ -6,9 +6,11 @@ import br.edu.ifsp.lp1p1client.dto.reservation.ReservationRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
 import br.edu.ifsp.lp1p1client.request.book.BookRequest;
 import br.edu.ifsp.lp1p1client.request.loan.LoanRequest;
+import br.edu.ifsp.lp1p1client.request.user.UserRequest;
 import br.edu.ifsp.lp1p1client.util.BookUtil;
 import br.edu.ifsp.lp1p1client.util.DateUtil;
 import br.edu.ifsp.lp1p1client.util.LoanUtil;
+import br.edu.ifsp.lp1p1client.util.UserUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,7 @@ public class ClientUI {
             System.out.println("3. Create a reservation");
             System.out.println("4. Cancel a reservation");
             System.out.println("5. List your loans and reservations");
+            System.out.println("6. List all clients");
             System.out.println("0. Logout");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -77,6 +80,12 @@ public class ClientUI {
                     List<LoanResponseDTO> loans = LoanRequest.findAllByClientId(token, client.id());
                     for(LoanResponseDTO l : loans){
                         LoanUtil.formatToString(l);
+                    }
+                }
+                case 6 -> {
+                    List<UserResponseDTO> users = UserRequest.findAllClients(token);
+                    for (UserResponseDTO u: users) {
+                        UserUtil.formatToString(u);
                     }
                 }
                 case 0 -> {

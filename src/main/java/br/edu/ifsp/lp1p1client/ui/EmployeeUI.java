@@ -5,11 +5,14 @@ import br.edu.ifsp.lp1p1client.dto.loan.LoanRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.loan.LoanResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.reservation.ReservationRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
+import br.edu.ifsp.lp1p1client.entity.User;
 import br.edu.ifsp.lp1p1client.request.book.BookRequest;
 import br.edu.ifsp.lp1p1client.request.loan.LoanRequest;
+import br.edu.ifsp.lp1p1client.request.user.UserRequest;
 import br.edu.ifsp.lp1p1client.util.BookUtil;
 import br.edu.ifsp.lp1p1client.util.DateUtil;
 import br.edu.ifsp.lp1p1client.util.LoanUtil;
+import br.edu.ifsp.lp1p1client.util.UserUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +38,8 @@ public class EmployeeUI {
             System.out.println("6. Cancel a reservation");
             System.out.println("7. List all loans reservation");
             System.out.println("8. List loans and reservation by client id");
+            System.out.println("9. List all clients");
+            System.out.println("10. List all employees");
             System.out.println("0. Logout");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -84,7 +89,8 @@ public class EmployeeUI {
                     System.out.println();
                     System.out.println("Reservation created");
                     System.out.println();
-                }case 5 -> {
+                }
+                case 5 -> {
                     System.out.println("Type the id of the book");
                     Long bookId = input.nextLong();
                     input.nextLine();
@@ -93,18 +99,21 @@ public class EmployeeUI {
                     input.nextLine();
                     BookResponseDTO book = BookRequest.returnBook(token, bookId, clientId);
                     BookUtil.formatToString(book);
-                }case 6 -> {
+                }
+                case 6 -> {
                     System.out.println("Type the id of the book to cancel your reservations");
                     Long bookId = input.nextLong();
                     BookResponseDTO book = LoanRequest.cancelReservation(token, bookId);
                     BookUtil.formatToString(book);
                     input.nextLine();
-                }case 7 -> {
+                }
+                case 7 -> {
                     List<LoanResponseDTO> loans = LoanRequest.findAll(token);
                     for(LoanResponseDTO l : loans){
                         LoanUtil.formatToString(l);
                     }
-                }case 8 -> {
+                }
+                case 8 -> {
                     System.out.println("Type the id of the client");
                     Long clientId = input.nextLong();
                     List<LoanResponseDTO> loans = LoanRequest.findAllByClientId(token, clientId);
@@ -113,7 +122,18 @@ public class EmployeeUI {
                     }
                     input.nextLine();
                 }
-
+                case 9 -> {
+                    List<UserResponseDTO> users = UserRequest.findAllClients(token);
+                    for (UserResponseDTO u: users) {
+                        UserUtil.formatToString(u);
+                    }
+                }
+                case 10 -> {
+                    List<UserResponseDTO> users = UserRequest.findAllEmployees(token);
+                    for (UserResponseDTO u: users) {
+                        UserUtil.formatToString(u);
+                    }
+                }
                 case 0 -> {
                     System.out.println("Quiting");
                     option = 0;
