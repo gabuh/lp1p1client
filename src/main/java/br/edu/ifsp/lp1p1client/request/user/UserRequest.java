@@ -1,6 +1,7 @@
 package br.edu.ifsp.lp1p1client.request.user;
 
 import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
+import br.edu.ifsp.lp1p1client.dto.loan.LoanRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.user.LoginDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
 import org.springframework.http.*;

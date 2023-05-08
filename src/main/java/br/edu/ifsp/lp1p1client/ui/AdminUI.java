@@ -1,9 +1,12 @@
 package br.edu.ifsp.lp1p1client.ui;
 
 import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
+import br.edu.ifsp.lp1p1client.dto.loan.LoanRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
+import br.edu.ifsp.lp1p1client.request.loan.LoanRequest;
 import br.edu.ifsp.lp1p1client.request.user.UserRequest;
 import br.edu.ifsp.lp1p1client.util.BookUtil;
+import br.edu.ifsp.lp1p1client.util.DateUtil;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -16,11 +19,11 @@ public class AdminUI {
         short option = -1;
         String inputStr;
         do {
-            System.out.println("[Admin: " + admin.name() +" ]");
+            System.out.println("[Admin: " + admin.name() +"]");
             System.out.println("1. List all books");
             System.out.println("2. List book(s) by title");
             System.out.println("3. Delete book by id");
-            System.out.println("4. ");
+            System.out.println("4. Create a loan");
             System.out.println("0. Quit");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -48,6 +51,21 @@ public class AdminUI {
                     System.out.println("Book #"+id+" deleted");
                     System.out.println();
                     input.nextLine();
+                }
+                case 4 -> {
+                    System.out.println("Type the id of the book to make a loan");
+                    Long bookId = input.nextLong();
+                    input.nextLine();
+                    System.out.println("Type the id of the client");
+                    Long clientId = input.nextLong();
+                    input.nextLine();
+                    System.out.println("Type the return date");
+                    String returnDate = input.nextLine();
+                    LoanRequestDTO loan = new LoanRequestDTO(clientId, DateUtil.inputDateToInstant(returnDate).toString());
+                    ResponseEntity<Void> response = LoanRequest.createLoan(token, bookId, loan);
+                    System.out.println();
+                    System.out.println("Loan created");
+                    System.out.println();
                 }
                 case 0 -> {
                     System.out.println("Quiting");
