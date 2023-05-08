@@ -2,6 +2,7 @@ package br.edu.ifsp.lp1p1client.ui;
 
 import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.loan.LoanRequestDTO;
+import br.edu.ifsp.lp1p1client.dto.reservation.ReservationRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
 import br.edu.ifsp.lp1p1client.request.loan.LoanRequest;
 import br.edu.ifsp.lp1p1client.request.user.UserRequest;
@@ -24,6 +25,7 @@ public class AdminUI {
             System.out.println("2. List book(s) by title");
             System.out.println("3. Delete book by id");
             System.out.println("4. Create a loan");
+            System.out.println("5. Create a reservation");
             System.out.println("0. Quit");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -65,6 +67,23 @@ public class AdminUI {
                     ResponseEntity<Void> response = LoanRequest.createLoan(token, bookId, loan);
                     System.out.println();
                     System.out.println("Loan created");
+                    System.out.println();
+                }
+                case 5 -> {
+                    System.out.println("Type the id of the book to make a reservation");
+                    Long bookId = input.nextLong();
+                    System.out.println("Type the id of the employee responsible for this reservation");
+                    Long employeeId = input.nextLong();
+                    input.nextLine();
+                    System.out.println("Type how many days ahead the book will be caught");
+                    short daysAhead = input.nextShort();
+                    input.nextLine();
+                    System.out.println("Type the return date");
+                    String returnDate = input.nextLine();
+                    ReservationRequestDTO reservation = new ReservationRequestDTO(employeeId, daysAhead, DateUtil.inputDateToInstant(returnDate).toString());
+                    ResponseEntity<Void> response = LoanRequest.createReservation(token, bookId, reservation);
+                    System.out.println();
+                    System.out.println("Reservation created");
                     System.out.println();
                 }
                 case 0 -> {
