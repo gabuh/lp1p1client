@@ -2,6 +2,7 @@ package br.edu.ifsp.lp1p1client.ui;
 
 import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
+import br.edu.ifsp.lp1p1client.request.book.BookRequest;
 import br.edu.ifsp.lp1p1client.request.user.UserRequest;
 import br.edu.ifsp.lp1p1client.util.BookUtil;
 import lombok.Getter;
@@ -29,7 +30,7 @@ public class EmployeeUI {
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
             switch (option) {
                 case 1 -> {
-                    List<BookResponseDTO> books = UserRequest.findAllBooks(token);
+                    List<BookResponseDTO> books = BookRequest.findAllBooks(token);
                     for(BookResponseDTO b : books){
                         BookUtil.formatToString(b);
                     }
@@ -37,7 +38,7 @@ public class EmployeeUI {
                 case 2 -> {
                     System.out.println("Type the book title");
                     String title = input.nextLine();
-                    List<BookResponseDTO> books = UserRequest.findAllBooksByTitle(token, title);
+                    List<BookResponseDTO> books = BookRequest.findAllBooksByTitle(token, title);
                     for(BookResponseDTO b : books){
                         BookUtil.formatToString(b);
                     }
