@@ -11,4 +11,6 @@ public class DateUtil {
          return localDateTime.toInstant(ZoneOffset.UTC);
     }
 
+package br.edu.ifsp.lp1p1client.util;
+public class DateUtil {
 }

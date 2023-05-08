@@ -3,7 +3,6 @@ package br.edu.ifsp.lp1p1client.request.user;
 import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.user.LoginDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
-import br.edu.ifsp.lp1p1client.entity.enums.user.UserRoles;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -66,5 +65,19 @@ public class UserRequest {
                 BookResponseDTO[].class,
                 title).getBody()));
     }
+
+    public static ResponseEntity<Void> deleteBookById(String token, Long id){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", token);
+
+        return new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/books/{id}",
+                HttpMethod.DELETE,
+                new HttpEntity<>(headers),
+                Void.class,
+                id);
+    }
+
 
 }
