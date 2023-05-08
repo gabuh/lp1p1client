@@ -1,7 +1,6 @@
 package br.edu.ifsp.lp1p1client.ui;
 
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
-import br.edu.ifsp.lp1p1client.entity.enums.user.UserRoles;
 import br.edu.ifsp.lp1p1client.request.user.UserRequest;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,15 +33,17 @@ public class GuestUI {
                     password = input.nextLine();
                     String token = UserRequest.login(email, password);
                     UserResponseDTO user = UserRequest.filter(token, email);
-
-                    switch (user.role()) {
-                        case ADMIN -> {
-                            AdminUI.show(user, token);
+                        switch (user.role()) {
+                            case ADMIN -> {
+                                AdminUI.show(user, token);
+                            }
+                            case CLIENT -> {
+                                ClientUI.show(user, token);
+                            }
+                            case EMPLOYEE -> {
+                                EmployeeUI.show(user, token);
+                            }
                         }
-                        case CLIENT ->{
-                            ClientUI.show(user, token);
-                        }
-                    }
                 }
                 case 2 -> {
                     System.out.println("opt2");
