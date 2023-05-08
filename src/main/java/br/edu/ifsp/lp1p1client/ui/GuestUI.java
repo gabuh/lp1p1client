@@ -39,6 +39,9 @@ public class GuestUI {
                         case ADMIN -> {
                             AdminUI.show(user, token);
                         }
+                        case CLIENT ->{
+                            ClientUI.show(user, token);
+                        }
                     }
                 }
                 case 2 -> {
