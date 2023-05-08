@@ -72,8 +72,6 @@ public class GuestUI {
                 default -> System.out.println("Invalid Option, Try again.");
             }
 
-            System.out.println("\033[H\033[2J");
-
         }while(option != 0);
         System.exit(0);
     }

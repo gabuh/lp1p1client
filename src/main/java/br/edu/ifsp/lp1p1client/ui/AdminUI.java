@@ -40,6 +40,7 @@ public class AdminUI {
             System.out.println("10. Register new user");
             System.out.println("11. Delete user by id");
             System.out.println("12. List all users");
+            System.out.println("13. List user by id");
             System.out.println("0. Logout");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -166,14 +167,18 @@ public class AdminUI {
                         UserUtil.formatToString(u);
                     }
                 }
+                case 13 -> {
+                    System.out.println("Type the cpf of the user (XXX.XXX.XXX-XX)");
+                    String cpf = input.nextLine();
+                    UserResponseDTO user = UserRequest.findByCpf(token, cpf);
+                    UserUtil.formatToString(user);
+                }
                 case 0 -> {
                     System.out.println("Quiting");
                     option = 0;
                 }
                 default -> System.out.println("Invalid Option, Try again.");
             }
-
-            System.out.println("\033[H\033[2J");
 
         }while(option != 0);
     }

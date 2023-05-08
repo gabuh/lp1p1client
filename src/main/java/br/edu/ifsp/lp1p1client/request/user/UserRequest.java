@@ -56,6 +56,20 @@ public class UserRequest {
 
     }
 
+    public static UserResponseDTO findByCpf(String token, String cpf){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", token);
+
+        return new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/users/find?cpf={cpf}",
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                UserResponseDTO.class,
+                cpf).getBody();
+
+    }
+
     public static ResponseEntity<Void> register(String token, RegisterDTO register){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
