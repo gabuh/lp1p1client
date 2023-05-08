@@ -43,6 +43,19 @@ public class UserRequest {
         return null;
     }
 
+    public static List<UserResponseDTO> findAll(String token){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", token);
+
+        return List.of(Objects.requireNonNull(new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/users",
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                UserResponseDTO[].class).getBody()));
+
+    }
+
     public static ResponseEntity<Void> register(String token, RegisterDTO register){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

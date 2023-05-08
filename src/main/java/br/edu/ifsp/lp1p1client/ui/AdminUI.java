@@ -39,6 +39,7 @@ public class AdminUI {
             System.out.println("9. List loans and reservations by client id");
             System.out.println("10. Register new user");
             System.out.println("11. Delete user by id");
+            System.out.println("12. List all users");
             System.out.println("0. Logout");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -158,6 +159,12 @@ public class AdminUI {
                     System.out.println("User deleted");
                     System.out.println();
                     input.nextLine();
+                }
+                case 12 -> {
+                    List<UserResponseDTO> users = UserRequest.findAll(token);
+                    for(UserResponseDTO u : users){
+                        UserUtil.formatToString(u);
+                    }
                 }
                 case 0 -> {
                     System.out.println("Quiting");
