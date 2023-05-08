@@ -41,7 +41,8 @@ public class AdminUI {
             System.out.println("12. List all users");
             System.out.println("13. List user by id");
             System.out.println("14. List user by name");
-            System.out.println("15. List clients");
+            System.out.println("15. List all clients");
+            System.out.println("16. List all employees");
             System.out.println("0. Logout");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -188,12 +189,22 @@ public class AdminUI {
                         UserUtil.formatToString(u);
                     }
                 }
+                case 16 -> {
+                    List<UserResponseDTO> users = UserRequest.findAllEmployees(token);
+                    for(UserResponseDTO u : users){
+                        UserUtil.formatToString(u);
+                    }
+                }
                 case 0 -> {
                     System.out.println("Quiting");
                     option = 0;
                 }
                 default -> System.out.println("Invalid Option, Try again.");
             }
+
+            System.out.println("Enter to continue");
+            input.nextLine();
+            System.out.println("\033[H\033[2J");
 
         }while(option != 0);
     }

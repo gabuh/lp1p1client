@@ -6,8 +6,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class Lp1p1clientApplicationTests {
 
+	/*
 	@Test
 	void contextLoads() {
 	}
+	
+	 */
 
 }

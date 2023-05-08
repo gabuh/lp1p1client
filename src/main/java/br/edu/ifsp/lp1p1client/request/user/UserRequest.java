@@ -95,6 +95,19 @@ public class UserRequest {
 
     }
 
+    public static List<UserResponseDTO> findAllEmployees(String token){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", token);
+
+        return List.of(Objects.requireNonNull(new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/users/employees",
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                UserResponseDTO[].class).getBody()));
+
+    }
+
     public static ResponseEntity<Void> register(String token, RegisterDTO register){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
