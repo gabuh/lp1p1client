@@ -3,6 +3,7 @@ package br.edu.ifsp.lp1p1client.request.user;
 import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.loan.LoanRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.user.LoginDTO;
+import br.edu.ifsp.lp1p1client.dto.user.RegisterDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -40,6 +41,18 @@ public class UserRequest {
         }
 
         return null;
+    }
+
+    public static UserResponseDTO register(String token, RegisterDTO register){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", token);
+
+        return Objects.requireNonNull(new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/users",
+                HttpMethod.POST,
+                new HttpEntity<>(register, headers),
+                UserResponseDTO.class).getBody());
     }
 
 

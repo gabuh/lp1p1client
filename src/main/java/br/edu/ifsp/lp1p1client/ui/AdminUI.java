@@ -32,6 +32,7 @@ public class AdminUI {
             System.out.println("7. Cancel a reservation");
             System.out.println("8. List all loans and reservations");
             System.out.println("9. List loans and reservations by client id");
+            System.out.println("10. Register new user");
             System.out.println("0. Quit");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -123,6 +124,9 @@ public class AdminUI {
                         LoanUtil.formatToString(l);
                     }
                     input.nextLine();
+                }
+                case 10 -> {
+
                 }
                 case 0 -> {
                     System.out.println("Quiting");
