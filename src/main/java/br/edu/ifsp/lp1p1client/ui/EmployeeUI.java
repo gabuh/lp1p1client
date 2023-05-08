@@ -4,12 +4,8 @@ import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.loan.LoanRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.reservation.ReservationRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
-<<<<<<< HEAD
-import br.edu.ifsp.lp1p1client.request.loan.LoanRequest;
-=======
 import br.edu.ifsp.lp1p1client.request.book.BookRequest;
->>>>>>> dc22d87afaa6ad44c18daefb1bb41d5728166e45
-import br.edu.ifsp.lp1p1client.request.user.UserRequest;
+import br.edu.ifsp.lp1p1client.request.loan.LoanRequest;
 import br.edu.ifsp.lp1p1client.util.BookUtil;
 import br.edu.ifsp.lp1p1client.util.DateUtil;
 import lombok.Getter;
