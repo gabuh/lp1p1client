@@ -164,7 +164,7 @@ NO_CONTENT
 
 
 
-<h1 align="center"> Rota 5</h1>
+<h1 align="center"> Rota 4</h1>
 
 <h2 align="center">CRIAR EMPRESTIMO</h2>
 <p align="center"> ADMIN, FUNCIONÁRIO </p>
@@ -188,7 +188,7 @@ Request:
 
 
 
-<h1 align="center"> Rota 6</h1>
+<h1 align="center"> Rota 5</h1>
 
 <h2 align="center">CRIAR RESERVA</h2>
 <p align="center"> PUBLICO</p>
@@ -215,7 +215,7 @@ Request:
 
 
 
-<h1 align="center"> Rota 7</h1>
+<h1 align="center"> Rota 6</h1>
 
 <h2 align="center">DEVOLVER LIVRO</h2>
 <p align="center">ADMIN, EMPLOYEE</p>
@@ -246,7 +246,7 @@ Response:
 
 
 
-<h1 align="center"> Rota 8</h1>
+<h1 align="center"> Rota 7</h1>
 
 <h2 align="center">CANCELAR RESERVA</h2>
 <p align="center">ADMIN, FUNCIONÁRIO</p>
@@ -279,7 +279,7 @@ Response:
 
 
 
-<h1 align="center"> Rota 9</h1>
+<h1 align="center"> Rota 8</h1>
 
 <h2 align="center">LISTAR TODAS OS EMPRÉSTIMOS E RESERVAS</h2>
 <p align="center">PUBLICO</p>
@@ -318,7 +318,7 @@ Response:
 
 
 
-<h1 align="center"> Rota 10</h1>
+<h1 align="center"> Rota 9</h1>
 
 <h2 align="center">LISTAR EMPRÉSTIMOS E RESERVAS POR ID DE CLIENTE</h2>
 <p align="center">PUBLICO</p>
@@ -375,7 +375,7 @@ Response:
 
 
 
-<h1 align="center"> Rota 11</h1>
+<h1 align="center"> Rota 10</h1>
 
 <h2 align="center">LISTAR TODAS OS EMPRÉSTIMOS E RESERVAS POR DATA</h2>
 <p align="center">PUBLICO</p>
@@ -414,7 +414,7 @@ Response:
 
 
 
-<h1 align="center"> Rota 12</h1>
+<h1 align="center"> Rota 11</h1>
 
 <h2 align="center">FAZER LOGIN</h2>
 <p align="center"> PUBLICO </p>
@@ -440,7 +440,7 @@ Request:
 
 
 
-<h1 align="center"> Rota 13</h1>
+<h1 align="center"> Rota 12</h1>
 
 <h2 align="center">REGISTRAR USUÁRIO</h2>
 <p align="center"> ADMIN </p>
@@ -470,7 +470,7 @@ Request:
 
 
 
-<h1 align="center"> Rota 14</h1>
+<h1 align="center"> Rota 13</h1>
 
 <h2 align="center">REGISTRAR CLIENTE</h2>
 <p align="center"> PUBLICO </p>
@@ -499,7 +499,7 @@ Request:
 
 
 
-<h1 align="center"> Rota 15</h1>
+<h1 align="center"> Rota 14</h1>
 
 <h2 align="center">DELETAR USUÁRIO POR ID</h2>
 <p align="center"> ADMIN </p>
@@ -522,7 +522,7 @@ NO_CONTENT
 
 
 
-<h1 align="center"> Rota 16</h1>
+<h1 align="center"> Rota 15</h1>
 
 <h2 align="center">LISTAR TODOS OS USUÁRIOS</h2>
 <p align="center">PUBLICO</p>
@@ -562,7 +562,7 @@ Response:
 
 
 
-<h1 align="center"> Rota 17</h1>
+<h1 align="center"> Rota 16</h1>
 
 <h2 align="center">LISTAR USUÁRIO POR CPF</h2>
 <p align="center">ADMIN</p>
@@ -592,7 +592,7 @@ Response:
 
 
 
-<h1 align="center"> Rota 18</h1>
+<h1 align="center"> Rota 17</h1>
 
 <h2 align="center">LISTAR USUÁRIO POR NOME</h2>
 <p align="center">ADMIN</p>
@@ -622,7 +622,7 @@ Response:
 
 
 
-<h1 align="center"> Rota 19</h1>
+<h1 align="center"> Rota 18</h1>
 
 <h2 align="center">LISTAR TODOS OS CLIENTES</h2>
 <p align="center">PUBLICO</p>
@@ -662,7 +662,7 @@ Response:
 
 
 
-<h1 align="center"> Rota 20</h1>
+<h1 align="center"> Rota 19</h1>
 
 <h2 align="center">LISTAR TODOS OS FUNCIONÁRIOS</h2>
 <p align="center">ADMIN, FUNCIONÁRIO</p>
