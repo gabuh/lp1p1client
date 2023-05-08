@@ -41,6 +41,7 @@ public class AdminUI {
             System.out.println("12. List all users");
             System.out.println("13. List user by id");
             System.out.println("14. List user by name");
+            System.out.println("15. List clients");
             System.out.println("0. Logout");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -177,6 +178,12 @@ public class AdminUI {
                     System.out.println("Type the name of the user");
                     String name = input.nextLine();
                     List<UserResponseDTO> users = UserRequest.findByName(token, name);
+                    for(UserResponseDTO u : users){
+                        UserUtil.formatToString(u);
+                    }
+                }
+                case 15 -> {
+                    List<UserResponseDTO> users = UserRequest.findAllClients(token);
                     for(UserResponseDTO u : users){
                         UserUtil.formatToString(u);
                     }
