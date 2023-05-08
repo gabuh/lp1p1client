@@ -4,6 +4,7 @@ import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.loan.LoanRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.reservation.ReservationRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
+import br.edu.ifsp.lp1p1client.request.book.BookRequest;
 import br.edu.ifsp.lp1p1client.request.loan.LoanRequest;
 import br.edu.ifsp.lp1p1client.request.user.UserRequest;
 import br.edu.ifsp.lp1p1client.util.BookUtil;
@@ -26,13 +27,15 @@ public class AdminUI {
             System.out.println("3. Delete book by id");
             System.out.println("4. Create a loan");
             System.out.println("5. Create a reservation");
+            System.out.println("6. Return a book");
+            System.out.println("7. Cancel a reservation");
             System.out.println("0. Quit");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
 
             switch (option) {
                 case 1 -> {
-                    List<BookResponseDTO> books = UserRequest.findAllBooks(token);
+                    List<BookResponseDTO> books = BookRequest.findAllBooks(token);
                     for(BookResponseDTO b : books){
                         BookUtil.formatToString(b);
                     }
@@ -40,7 +43,7 @@ public class AdminUI {
                 case 2 -> {
                     System.out.println("Type the book title");
                     String title = input.nextLine();
-                    List<BookResponseDTO> books = UserRequest.findAllBooksByTitle(token, title);
+                    List<BookResponseDTO> books = BookRequest.findAllBooksByTitle(token, title);
                     for(BookResponseDTO b : books){
                         BookUtil.formatToString(b);
                     }
@@ -48,7 +51,7 @@ public class AdminUI {
                 case 3 -> {
                     System.out.println("Type the book id");
                     Long id = input.nextLong();
-                    ResponseEntity<Void> response = UserRequest.deleteBookById(token, id);
+                    ResponseEntity<Void> response = BookRequest.deleteBookById(token, id);
                     System.out.println();
                     System.out.println("Book #"+id+" deleted");
                     System.out.println();
@@ -85,6 +88,23 @@ public class AdminUI {
                     System.out.println();
                     System.out.println("Reservation created");
                     System.out.println();
+                }
+                case 6 -> {
+                    System.out.println("Type the id of the book");
+                    Long bookId = input.nextLong();
+                    input.nextLine();
+                    System.out.println("Type the id of the client that returned the book");
+                    Long clientId = input.nextLong();
+                    input.nextLine();
+                    BookResponseDTO book = BookRequest.returnBook(token, bookId, clientId);
+                    BookUtil.formatToString(book);
+                }
+                case 7 -> {
+                    System.out.println("Type the id of the book to cancel your reservations");
+                    Long bookId = input.nextLong();
+                    BookResponseDTO book = LoanRequest.cancelReservation(token, bookId);
+                    BookUtil.formatToString(book);
+                    input.nextLine();
                 }
                 case 0 -> {
                     System.out.println("Quiting");

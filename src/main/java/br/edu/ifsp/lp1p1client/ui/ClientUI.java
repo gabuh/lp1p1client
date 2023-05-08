@@ -3,7 +3,11 @@ package br.edu.ifsp.lp1p1client.ui;
 import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.reservation.ReservationRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
+<<<<<<< HEAD
 import br.edu.ifsp.lp1p1client.request.loan.LoanRequest;
+=======
+import br.edu.ifsp.lp1p1client.request.book.BookRequest;
+>>>>>>> dc22d87afaa6ad44c18daefb1bb41d5728166e45
 import br.edu.ifsp.lp1p1client.request.user.UserRequest;
 import br.edu.ifsp.lp1p1client.util.BookUtil;
 import br.edu.ifsp.lp1p1client.util.DateUtil;
@@ -33,7 +37,7 @@ public class ClientUI {
 
             switch (option) {
                 case 1 -> {
-                    List<BookResponseDTO> books = UserRequest.findAllBooks(token);
+                    List<BookResponseDTO> books = BookRequest.findAllBooks(token);
                     for(BookResponseDTO b : books){
                         BookUtil.formatToString(b);
                     }
@@ -41,7 +45,7 @@ public class ClientUI {
                 case 2 -> {
                     System.out.println("Type the book title");
                     String title = input.nextLine();
-                    List<BookResponseDTO> books = UserRequest.findAllBooksByTitle(token, title);
+                    List<BookResponseDTO> books = BookRequest.findAllBooksByTitle(token, title);
                     for (BookResponseDTO b : books) {
                         BookUtil.formatToString(b);
                     }

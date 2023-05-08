@@ -1,5 +1,6 @@
 package br.edu.ifsp.lp1p1client.request.loan;
 
+import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.loan.LoanRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.reservation.ReservationRequestDTO;
 import org.springframework.http.*;
@@ -32,6 +33,19 @@ public class LoanRequest {
                 new HttpEntity<>(reservation, headers),
                 Void.class,
                 bookId);
+    }
+
+    public static BookResponseDTO cancelReservation(String token, Long bookId){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", token);
+
+        return new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/books/{id}/cancel/reservation",
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                BookResponseDTO.class,
+                bookId).getBody();
     }
 
 }
