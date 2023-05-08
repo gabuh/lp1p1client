@@ -58,6 +58,7 @@ public class GuestUI {
             System.out.println("\033[H\033[2J");
 
         }while(option != 0);
+        System.exit(0);
     }
 
 }

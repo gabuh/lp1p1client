@@ -43,16 +43,16 @@ public class UserRequest {
         return null;
     }
 
-    public static UserResponseDTO register(String token, RegisterDTO register){
+    public static ResponseEntity<Void> register(String token, RegisterDTO register){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", token);
 
-        return Objects.requireNonNull(new RestTemplate().exchange(
+        return new RestTemplate().exchange(
                 "http://localhost:8080/api/v1/users",
                 HttpMethod.POST,
                 new HttpEntity<>(register, headers),
-                UserResponseDTO.class).getBody());
+                Void.class);
     }
 
 

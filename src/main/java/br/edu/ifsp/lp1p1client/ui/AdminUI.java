@@ -4,15 +4,20 @@ import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.loan.LoanRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.loan.LoanResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.reservation.ReservationRequestDTO;
+import br.edu.ifsp.lp1p1client.dto.user.RegisterDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
+import br.edu.ifsp.lp1p1client.entity.enums.user.UserRoles;
 import br.edu.ifsp.lp1p1client.request.book.BookRequest;
 import br.edu.ifsp.lp1p1client.request.loan.LoanRequest;
+import br.edu.ifsp.lp1p1client.request.user.UserRequest;
 import br.edu.ifsp.lp1p1client.util.BookUtil;
 import br.edu.ifsp.lp1p1client.util.DateUtil;
 import br.edu.ifsp.lp1p1client.util.LoanUtil;
+import br.edu.ifsp.lp1p1client.util.UserUtil;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class AdminUI {
@@ -33,7 +38,7 @@ public class AdminUI {
             System.out.println("8. List all loans and reservations");
             System.out.println("9. List loans and reservations by client id");
             System.out.println("10. Register new user");
-            System.out.println("0. Quit");
+            System.out.println("0. Logout");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
 
@@ -126,7 +131,23 @@ public class AdminUI {
                     input.nextLine();
                 }
                 case 10 -> {
-
+                    System.out.println("Type the name of the new user");
+                    String name = input.nextLine();
+                    System.out.println("Type the cpf of the new user (XXX.XXX.XXX-XX)");
+                    String cpf = input.nextLine();
+                    System.out.println("Type the address of the new user");
+                    String address = input.nextLine();
+                    System.out.println("Type the email of the new user");
+                    String email = input.nextLine();
+                    System.out.println("Type the password of the new user");
+                    String password = input.nextLine();
+                    System.out.println("Type the role of the new user (ADMIN | EMPLOYEE | CLIENT)");
+                    String role = input.nextLine();
+                    RegisterDTO register = new RegisterDTO(name, cpf, address, email, password, UserRoles.valueOf(role));
+                    ResponseEntity<Void> response = UserRequest.register(token, register);
+                    System.out.println();
+                    System.out.println("User created");
+                    System.out.println();
                 }
                 case 0 -> {
                     System.out.println("Quiting");
