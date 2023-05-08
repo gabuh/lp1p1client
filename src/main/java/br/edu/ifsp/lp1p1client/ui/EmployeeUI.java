@@ -2,12 +2,14 @@ package br.edu.ifsp.lp1p1client.ui;
 
 import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.loan.LoanRequestDTO;
+import br.edu.ifsp.lp1p1client.dto.loan.LoanResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.reservation.ReservationRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
 import br.edu.ifsp.lp1p1client.request.book.BookRequest;
 import br.edu.ifsp.lp1p1client.request.loan.LoanRequest;
 import br.edu.ifsp.lp1p1client.util.BookUtil;
 import br.edu.ifsp.lp1p1client.util.DateUtil;
+import br.edu.ifsp.lp1p1client.util.LoanUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +32,9 @@ public class EmployeeUI {
             System.out.println("3. Create a loan");
             System.out.println("4. Create a reservation");
             System.out.println("5. Return a book");
-            System.out.println("7. Cancel a reservation");
+            System.out.println("6. Cancel a reservation");
+            System.out.println("7. List all loans reservation");
+            System.out.println("8. List loans and reservation by client id");
             System.out.println("0. Quit");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -94,6 +98,19 @@ public class EmployeeUI {
                     Long bookId = input.nextLong();
                     BookResponseDTO book = LoanRequest.cancelReservation(token, bookId);
                     BookUtil.formatToString(book);
+                    input.nextLine();
+                }case 7 -> {
+                    List<LoanResponseDTO> loans = LoanRequest.findAll(token);
+                    for(LoanResponseDTO l : loans){
+                        LoanUtil.formatToString(l);
+                    }
+                }case 8 -> {
+                    System.out.println("Type the id of the client");
+                    Long clientId = input.nextLong();
+                    List<LoanResponseDTO> loans = LoanRequest.findAllByClientId(token, clientId);
+                    for(LoanResponseDTO l : loans){
+                        LoanUtil.formatToString(l);
+                    }
                     input.nextLine();
                 }
 
