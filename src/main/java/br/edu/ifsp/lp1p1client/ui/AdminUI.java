@@ -1,17 +1,22 @@
 package br.edu.ifsp.lp1p1client.ui;
 
-<<<<<<< HEAD
+import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
+import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
+import br.edu.ifsp.lp1p1client.request.user.UserRequest;
+import br.edu.ifsp.lp1p1client.util.BookUtil;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class AdminUI {
     private static final Scanner input = new Scanner(System.in);
 
-    public static void show(){
+    public static void show(UserResponseDTO admin, String token){
         short option = -1;
         String inputStr;
         do {
-            System.out.println("[Admin: " + "UserNameHere" +" ]");
-            System.out.println("1. ");
+            System.out.println("[Admin: " + admin.name() +" ]");
+            System.out.println("1. List all books");
             System.out.println("2. ");
             System.out.println("3. ");
             System.out.println("4. ");
@@ -21,7 +26,10 @@ public class AdminUI {
 
             switch (option) {
                 case 1 -> {
-                    System.out.println("opt1");
+                    List<BookResponseDTO> books = UserRequest.findAllBooks(token);
+                    for(BookResponseDTO b : books){
+                        BookUtil.formatToString(b);
+                    }
                 }
                 case 2 -> {
                     System.out.println("opt2");
@@ -37,8 +45,5 @@ public class AdminUI {
 
         }while(option != 0);
     }
-=======
-public class AdminUI {
 
->>>>>>> 5e0d39ea4f6620a223a1173a6a936de2d3b1fcbe
 }

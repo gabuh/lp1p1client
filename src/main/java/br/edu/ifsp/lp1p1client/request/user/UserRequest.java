@@ -1,5 +1,6 @@
 package br.edu.ifsp.lp1p1client.request.user;
 
+import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
 import br.edu.ifsp.lp1p1client.dto.user.LoginDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
 import br.edu.ifsp.lp1p1client.entity.enums.user.UserRoles;
@@ -21,7 +22,7 @@ public class UserRequest {
                 String.class).getBody();
     }
 
-    public static UserRoles filter(String token, String email){
+    public static UserResponseDTO filter(String token, String email){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Authorization", token);
@@ -34,11 +35,23 @@ public class UserRequest {
 
         for (UserResponseDTO u : users){
             if(Objects.equals(email, u.email())){
-                return u.role();
+                return u;
             }
         }
 
         return null;
+    }
+
+    public static List<BookResponseDTO> findAllBooks(String token){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", token);
+
+        return List.of(Objects.requireNonNull(new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/books",
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                BookResponseDTO[].class).getBody()));
     }
 
 }

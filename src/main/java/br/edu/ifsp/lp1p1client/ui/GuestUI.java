@@ -1,5 +1,6 @@
 package br.edu.ifsp.lp1p1client.ui;
 
+import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
 import br.edu.ifsp.lp1p1client.entity.enums.user.UserRoles;
 import br.edu.ifsp.lp1p1client.request.user.UserRequest;
 import lombok.Getter;
@@ -32,11 +33,11 @@ public class GuestUI {
                     System.out.println("Type your password:");
                     password = input.nextLine();
                     String token = UserRequest.login(email, password);
-                    UserRoles role = UserRequest.filter(token, email);
+                    UserResponseDTO user = UserRequest.filter(token, email);
 
-                    switch (role) {
+                    switch (user.role()) {
                         case ADMIN -> {
-                            AdminUI.show();
+                            AdminUI.show(user, token);
                         }
                     }
                 }
