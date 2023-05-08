@@ -86,6 +86,10 @@ public class ClientUI {
                 default -> System.out.println("Invalid Option, Try again.");
             }
 
+            System.out.println("Enter to continue");
+            input.nextLine();
+            System.out.println("\033[H\033[2J");
+
         }while(option != 0);
     }
 
