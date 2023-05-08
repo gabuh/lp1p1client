@@ -1,9 +1,12 @@
 package br.edu.ifsp.lp1p1client.ui;
 
+import br.edu.ifsp.lp1p1client.dto.user.RegisterDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
+import br.edu.ifsp.lp1p1client.entity.enums.user.UserRoles;
 import br.edu.ifsp.lp1p1client.request.user.UserRequest;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Scanner;
 
@@ -46,7 +49,21 @@ public class GuestUI {
                         }
                 }
                 case 2 -> {
-                    System.out.println("opt2");
+                    System.out.println("Type the name of the new user");
+                    String name = input.nextLine();
+                    System.out.println("Type the cpf of the new user (XXX.XXX.XXX-XX)");
+                    String cpf = input.nextLine();
+                    System.out.println("Type the address of the new user");
+                    String address = input.nextLine();
+                    System.out.println("Type the email of the new user");
+                    String email = input.nextLine();
+                    System.out.println("Type the password of the new user");
+                    String password = input.nextLine();
+                    RegisterDTO register = new RegisterDTO(name, cpf, address, email, password, UserRoles.CLIENT);
+                    ResponseEntity<Void> response = UserRequest.registerClient(register);
+                    System.out.println();
+                    System.out.println("Client created");
+                    System.out.println();
                 }
                 case 0 -> {
                     System.out.println("Quiting");

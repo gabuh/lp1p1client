@@ -55,5 +55,12 @@ public class UserRequest {
                 Void.class);
     }
 
+    public static ResponseEntity<Void> registerClient(RegisterDTO register){
 
+        return new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/users/client",
+                HttpMethod.POST,
+                new HttpEntity<>(register),
+                Void.class);
+    }
 }
