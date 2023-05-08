@@ -17,7 +17,7 @@ public class AdminUI {
         do {
             System.out.println("[Admin: " + admin.name() +" ]");
             System.out.println("1. List all books");
-            System.out.println("2. ");
+            System.out.println("2. List book(s) by title");
             System.out.println("3. ");
             System.out.println("4. ");
             System.out.println("0. Quit");
@@ -32,7 +32,12 @@ public class AdminUI {
                     }
                 }
                 case 2 -> {
-                    System.out.println("opt2");
+                    System.out.println("Type the book title");
+                    String title = input.nextLine();
+                    List<BookResponseDTO> books = UserRequest.findAllBooksByTitle(token, title);
+                    for(BookResponseDTO b : books){
+                        BookUtil.formatToString(b);
+                    }
                 }
                 case 0 -> {
                     System.out.println("Quiting");

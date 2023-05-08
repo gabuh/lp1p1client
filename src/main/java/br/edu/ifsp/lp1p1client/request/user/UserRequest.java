@@ -54,4 +54,17 @@ public class UserRequest {
                 BookResponseDTO[].class).getBody()));
     }
 
+    public static List<BookResponseDTO> findAllBooksByTitle(String token, String title){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", token);
+
+        return List.of(Objects.requireNonNull(new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/books/find?title={title}",
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                BookResponseDTO[].class,
+                title).getBody()));
+    }
+
 }
