@@ -1,7 +1,5 @@
 package br.edu.ifsp.lp1p1client.request.user;
 
-import br.edu.ifsp.lp1p1client.dto.book.BookResponseDTO;
-import br.edu.ifsp.lp1p1client.dto.loan.LoanRequestDTO;
 import br.edu.ifsp.lp1p1client.dto.user.LoginDTO;
 import br.edu.ifsp.lp1p1client.dto.user.RegisterDTO;
 import br.edu.ifsp.lp1p1client.dto.user.UserResponseDTO;
@@ -67,6 +65,20 @@ public class UserRequest {
                 new HttpEntity<>(headers),
                 UserResponseDTO.class,
                 cpf).getBody();
+
+    }
+
+    public static List<UserResponseDTO> findByName(String token, String name){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", token);
+
+        return List.of(Objects.requireNonNull(new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/users/find?name={name}",
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                UserResponseDTO[].class,
+                name).getBody()));
 
     }
 

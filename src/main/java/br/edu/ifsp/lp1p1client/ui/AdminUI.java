@@ -17,7 +17,6 @@ import br.edu.ifsp.lp1p1client.util.UserUtil;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class AdminUI {
@@ -41,6 +40,7 @@ public class AdminUI {
             System.out.println("11. Delete user by id");
             System.out.println("12. List all users");
             System.out.println("13. List user by id");
+            System.out.println("14. List user by name");
             System.out.println("0. Logout");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -172,6 +172,14 @@ public class AdminUI {
                     String cpf = input.nextLine();
                     UserResponseDTO user = UserRequest.findByCpf(token, cpf);
                     UserUtil.formatToString(user);
+                }
+                case 14 -> {
+                    System.out.println("Type the name of the user");
+                    String name = input.nextLine();
+                    List<UserResponseDTO> users = UserRequest.findByName(token, name);
+                    for(UserResponseDTO u : users){
+                        UserUtil.formatToString(u);
+                    }
                 }
                 case 0 -> {
                     System.out.println("Quiting");
