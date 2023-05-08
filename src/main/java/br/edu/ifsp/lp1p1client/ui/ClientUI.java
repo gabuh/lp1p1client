@@ -30,7 +30,7 @@ public class ClientUI {
             System.out.println("3. Create a reservation");
             System.out.println("4. Cancel a reservation");
             System.out.println("5. List your loans and reservations");
-            System.out.println("0. Quit");
+            System.out.println("0. Logout");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
 

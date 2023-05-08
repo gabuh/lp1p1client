@@ -38,6 +38,7 @@ public class AdminUI {
             System.out.println("8. List all loans and reservations");
             System.out.println("9. List loans and reservations by client id");
             System.out.println("10. Register new user");
+            System.out.println("11. Delete user by id");
             System.out.println("0. Logout");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
@@ -148,6 +149,15 @@ public class AdminUI {
                     System.out.println();
                     System.out.println("User created");
                     System.out.println();
+                }
+                case 11 -> {
+                    System.out.println("Type the id of the user to be deleted");
+                    Long userId = input.nextLong();
+                    ResponseEntity<Void> response = UserRequest.deleteUserById(token, userId);
+                    System.out.println();
+                    System.out.println("User deleted");
+                    System.out.println();
+                    input.nextLine();
                 }
                 case 0 -> {
                     System.out.println("Quiting");

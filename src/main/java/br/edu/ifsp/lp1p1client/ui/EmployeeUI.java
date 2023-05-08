@@ -35,7 +35,7 @@ public class EmployeeUI {
             System.out.println("6. Cancel a reservation");
             System.out.println("7. List all loans reservation");
             System.out.println("8. List loans and reservation by client id");
-            System.out.println("0. Quit");
+            System.out.println("0. Logout");
             inputStr = input.nextLine().replaceAll("\\D+","");
             option = Short.parseShort((!inputStr.equals("")?inputStr:"-1"));
             switch (option) {

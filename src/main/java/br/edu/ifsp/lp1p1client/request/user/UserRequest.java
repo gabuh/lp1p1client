@@ -63,4 +63,18 @@ public class UserRequest {
                 new HttpEntity<>(register),
                 Void.class);
     }
+
+    public static ResponseEntity<Void> deleteUserById(String token, Long userId){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", token);
+
+        return new RestTemplate().exchange(
+                "http://localhost:8080/api/v1/users/{id}",
+                HttpMethod.DELETE,
+                new HttpEntity<>(headers),
+                Void.class,
+                userId);
+    }
+
 }
